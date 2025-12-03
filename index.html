@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eğlenceli Öğrenme Dünyası - 5-6 Yaş</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Ana Menü -->
+    <div id="mainMenu" class="screen active">
+        <div class="menu-container">
+            <h1 class="game-title">🌟 Eğlenceli Öğrenme Dünyası 🌟</h1>
+            <p class="welcome-text">Merhaba küçük kaşif! Hangi maceraya hazırsın?</p>
+            <button class="menu-btn" onclick="showCharacterSelect()">
+                🎭 Oyuna Başla
+            </button>
+            <button class="menu-btn" onclick="showInstructions()">
+                📖 Nasıl Oynanır?
+            </button>
+        </div>
+    </div>
+
+    <!-- Karakter Seçimi -->
+    <div id="characterSelect" class="screen">
+        <h2 class="section-title">👦👧 Arkadaşını Seç!</h2>
+        <div class="character-grid">
+            <div class="character-card" onclick="selectCharacter('lion')">
+                <div class="character-avatar">🦁</div>
+                <h3>Aslan Leo</h3>
+                <p>Cesur ve güçlü</p>
+            </div>
+            <div class="character-card" onclick="selectCharacter('cat')">
+                <div class="character-avatar">🐱</div>
+                <h3>Kedi Minnos</h3>
+                <p>Sevimli ve akıllı</p>
+            </div>
+            <div class="character-card" onclick="selectCharacter('rabbit')">
+                <div class="character-avatar">🐰</div>
+                <h3>Tavşan Pamuk</h3>
+                <p>Hızlı ve neşeli</p>
+            </div>
+            <div class="character-card" onclick="selectCharacter('bear')">
+                <div class="character-avatar">🐻</div>
+                <h3>Ayı Boncuk</h3>
+                <p>Arkadaş canlısı</p>
+            </div>
+        </div>
+        <button class="back-btn" onclick="showMainMenu()">🔙 Geri Dön</button>
+    </div>
+
+    <!-- Oyun Seçim Menüsü -->
+    <div id="gameMenu" class="screen">
+        <div class="game-header">
+            <div class="player-info">
+                <span class="player-character" id="playerCharacter"></span>
+                <span class="player-name" id="playerName"></span>
+            </div>
+            <div class="score-info">
+                <span>⭐ <span id="totalStars">0</span></span>
+            </div>
+        </div>
+        
+        <h2 class="section-title">🎮 Oyun Seç!</h2>
+        <div class="games-grid">
+            <div class="game-card" onclick="startGame('coloring')">
+                <div class="game-icon">🎨</div>
+                <h3>Boyama Atölyesi</h3>
+                <p>Resimleri renklendir!</p>
+            </div>
+            <div class="game-card" onclick="startGame('memory')">
+                <div class="game-icon">🧠</div>
+                <h3>Hafıza Oyunu</h3>
+                <p>Kartları eşleştir!</p>
+            </div>
+            <div class="game-card" onclick="startGame('puzzle')">
+                <div class="game-icon">🧩</div>
+                <h3>Şekil Bulma</h3>
+                <p>Doğru şekli bul!</p>
+            </div>
+            <div class="game-card" onclick="startGame('cipher')">
+                <div class="game-icon">🔐</div>
+                <h3>Şifre Çöz</h3>
+                <p>Gizli mesajı bul!</p>
+            </div>
+            <div class="game-card" onclick="startGame('sounds')">
+                <div class="game-icon">🎵</div>
+                <h3>Ses Tanıma</h3>
+                <p>Hayvan seslerini bil!</p>
+            </div>
+            <div class="game-card" onclick="startGame('video')">
+                <div class="game-icon">🎬</div>
+                <h3>Video Yap</h3>
+                <p>Kendi videonı oluştur!</p>
+            </div>
+            <div class="game-card" onclick="startGame('story')">
+                <div class="game-icon">📖</div>
+                <h3>Hikaye Zamanı</h3>
+                <p>AI hikayesi dinle!</p>
+            </div>
+            <div class="game-card" onclick="startGame('numbers')">
+                <div class="game-icon">🔢</div>
+                <h3>Sayı Öğren</h3>
+                <p>1'den 10'a say!</p>
+            </div>
+        </div>
+        <button class="back-btn" onclick="backToMainMenu()">🏠 Ana Menü</button>
+    </div>
+
+    <!-- Boyama Oyunu -->
+    <div id="coloringGame" class="screen game-screen">
+        <div class="game-header">
+            <button class="back-btn-small" onclick="backToGameMenu()">🔙</button>
+            <h2>🎨 Boyama Atölyesi</h2>
+            <div class="game-score">⭐ <span id="coloringStars">0</span></div>
+        </div>
+        
+        <div class="color-palette">
+            <div class="color-btn" style="background: #FF6B6B" onclick="selectColor('#FF6B6B')"></div>
+            <div class="color-btn" style="background: #4ECDC4" onclick="selectColor('#4ECDC4')"></div>
+            <div class="color-btn" style="background: #FFE66D" onclick="selectColor('#FFE66D')"></div>
+            <div class="color-btn" style="background: #95E1D3" onclick="selectColor('#95E1D3')"></div>
+            <div class="color-btn" style="background: #F38181" onclick="selectColor('#F38181')"></div>
+            <div class="color-btn" style="background: #AA96DA" onclick="selectColor('#AA96DA')"></div>
+            <div class="color-btn" style="background: #FCBAD3" onclick="selectColor('#FCBAD3')"></div>
+            <div class="color-btn" style="background: #A8E6CF" onclick="selectColor('#A8E6CF')"></div>
+        </div>
+        
+        <canvas id="coloringCanvas" width="600" height="500"></canvas>
+        
+        <div class="game-controls">
+            <button class="game-btn" onclick="clearCanvas()">🗑️ Temizle</button>
+            <button class="game-btn" onclick="newColoringImage()">🔄 Yeni Resim</button>
+            <button class="game-btn success" onclick="finishColoring()">✅ Tamamla</button>
+        </div>
+    </div>
+
+    <!-- Hafıza Oyunu -->
+    <div id="memoryGame" class="screen game-screen">
+        <div class="game-header">
+            <button class="back-btn-small" onclick="backToGameMenu()">🔙</button>
+            <h2>🧠 Hafıza Oyunu</h2>
+            <div class="game-score">⭐ <span id="memoryStars">0</span></div>
+        </div>
+        
+        <div class="game-stats">
+            <span>🎯 Eşleşme: <span id="matchCount">0</span></span>
+            <span>🔄 Hamle: <span id="moveCount">0</span></span>
+        </div>
+        
+        <div id="memoryCards" class="memory-grid"></div>
+        
+        <button class="game-btn" onclick="resetMemoryGame()">🔄 Yeni Oyun</button>
+    </div>
+
+    <!-- Şekil Bulma Oyunu -->
+    <div id="puzzleGame" class="screen game-screen">
+        <div class="game-header">
+            <button class="back-btn-small" onclick="backToGameMenu()">🔙</button>
+            <h2>🧩 Şekil Bulma</h2>
+            <div class="game-score">⭐ <span id="puzzleStars">0</span></div>
+        </div>
+        
+        <div class="puzzle-question">
+            <h3 id="puzzleQuestion">Hangi şekil farklı?</h3>
+            <div id="puzzleTarget" class="puzzle-target"></div>
+        </div>
+        
+        <div id="puzzleOptions" class="puzzle-options"></div>
+        
+        <div class="game-feedback" id="puzzleFeedback"></div>
+    </div>
+
+    <!-- Ses Tanıma Oyunu -->
+    <div id="soundsGame" class="screen game-screen">
+        <div class="game-header">
+            <button class="back-btn-small" onclick="backToGameMenu()">🔙</button>
+            <h2>🎵 Ses Tanıma</h2>
+            <div class="game-score">⭐ <span id="soundsStars">0</span></div>
+        </div>
+        
+        <div class="sounds-content">
+            <div class="sound-question">
+                <h3>Bu ses hangi hayvana ait?</h3>
+                <button class="play-sound-btn" onclick="playCurrentSound()">
+                    🔊 Sesi Dinle
+                </button>
+            </div>
+            
+            <div id="soundOptions" class="sound-options"></div>
+        </div>
+        
+        <div class="game-feedback" id="soundsFeedback"></div>
+    </div>
+
+    <!-- Hikaye Oyunu -->
+    <div id="storyGame" class="screen game-screen">
+        <div class="game-header">
+            <button class="back-btn-small" onclick="backToGameMenu()">🔙</button>
+            <h2>📖 Hikaye Zamanı</h2>
+            <div class="game-score">⭐ <span id="storyStars">0</span></div>
+        </div>
+        
+        <div class="story-content">
+            <div class="story-image" id="storyImage">📚</div>
+            <div class="story-text" id="storyText">
+                <p>Hikaye yükleniyor...</p>
+            </div>
+            <button class="game-btn" onclick="generateStory()" id="generateStoryBtn">
+                ✨ Yeni Hikaye Oluştur
+            </button>
+            <button class="game-btn" onclick="readStory()" id="readStoryBtn" style="display:none;">
+                🔊 Hikayeyi Dinle
+            </button>
+        </div>
+    </div>
+
+    <!-- Sayı Öğrenme Oyunu -->
+    <div id="numbersGame" class="screen game-screen">
+        <div class="game-header">
+            <button class="back-btn-small" onclick="backToGameMenu()">🔙</button>
+            <h2>🔢 Sayı Öğren</h2>
+            <div class="game-score">⭐ <span id="numbersStars">0</span></div>
+        </div>
+        
+        <div class="numbers-content">
+            <div class="number-display" id="numberDisplay">
+                <div class="big-number" id="currentNumber">5</div>
+                <div class="number-objects" id="numberObjects"></div>
+            </div>
+            
+            <div class="number-question">
+                <h3>Kaç tane var? Doğru sayıyı seç!</h3>
+            </div>
+            
+            <div id="numberOptions" class="number-options"></div>
+        </div>
+        
+        <div class="game-feedback" id="numbersFeedback"></div>
+    </div>
+
+    <!-- Şifreleme Oyunu -->
+    <div id="cipherGame" class="screen game-screen">
+        <div class="game-header">
+            <button class="back-btn-small" onclick="backToGameMenu()">🔙</button>
+            <h2>🔐 Şifre Çöz</h2>
+            <div class="game-score">⭐ <span id="cipherStars">0</span></div>
+        </div>
+        
+        <div class="cipher-content">
+            <div class="cipher-key">
+                <h3>Şifre Anahtarı:</h3>
+                <div id="cipherKey" class="cipher-key-display"></div>
+            </div>
+            
+            <div class="cipher-question">
+                <h3>Gizli Mesaj:</h3>
+                <div id="cipherMessage" class="cipher-message"></div>
+            </div>
+            
+            <div class="cipher-options">
+                <h3>Mesaj ne diyor?</h3>
+                <div id="cipherChoices" class="cipher-choices"></div>
+            </div>
+        </div>
+        
+        <div class="game-feedback" id="cipherFeedback"></div>
+        <button class="game-btn" onclick="newCipherChallenge()">🔄 Yeni Şifre</button>
+    </div>
+
+    <!-- Video Oluşturma -->
+    <div id="videoGame" class="screen game-screen">
+        <div class="game-header">
+            <button class="back-btn-small" onclick="backToGameMenu()">🔙</button>
+            <h2>🎬 Video Yap</h2>
+            <div class="game-score">⭐ <span id="videoStars">0</span></div>
+        </div>
+        
+        <div class="video-content">
+            <div class="video-preview" id="videoPreview">
+                <div class="video-frame" id="videoFrame">
+                    <div class="video-placeholder">🎬</div>
+                    <div class="video-text" id="videoText">Video'nuz burada gösterilecek!</div>
+                </div>
+            </div>
+            
+            <div class="video-controls">
+                <h3>Video Seçenekleri:</h3>
+                <div class="video-themes">
+                    <button class="theme-btn" onclick="selectVideoTheme('adventure')">
+                        🏕️ Macera
+                    </button>
+                    <button class="theme-btn" onclick="selectVideoTheme('space')">
+                        🚀 Uzay
+                    </button>
+                    <button class="theme-btn" onclick="selectVideoTheme('ocean')">
+                        🌊 Okyanus
+                    </button>
+                    <button class="theme-btn" onclick="selectVideoTheme('forest')">
+                        🌳 Orman
+                    </button>
+                </div>
+                
+                <button class="game-btn success" onclick="generateVideo()" id="generateVideoBtn">
+                    ✨ AI ile Video Oluştur
+                </button>
+                <button class="game-btn" onclick="playVideo()" id="playVideoBtn" style="display: none;">
+                    ▶️ Video'yu Oynat
+                </button>
+            </div>
+        </div>
+        
+        <div class="game-feedback" id="videoFeedback"></div>
+    </div>
+
+    <!-- Yönergeler -->
+    <div id="instructions" class="screen">
+        <div class="instructions-content">
+            <h2>📖 Nasıl Oynanır?</h2>
+            <div class="instruction-card">
+                <span class="instruction-icon">👦</span>
+                <div>
+                    <h3>1. Karakterini Seç</h3>
+                    <p>Önce oyun arkadaşını seç!</p>
+                </div>
+            </div>
+            <div class="instruction-card">
+                <span class="instruction-icon">🎮</span>
+                <div>
+                    <h3>2. Oyun Seç</h3>
+                    <p>8 farklı eğlenceli oyun var!</p>
+                </div>
+            </div>
+            <div class="instruction-card">
+                <span class="instruction-icon">⭐</span>
+                <div>
+                    <h3>3. Yıldız Kazan</h3>
+                    <p>Her başarılı görevde yıldız kazan!</p>
+                </div>
+            </div>
+            <div class="instruction-card">
+                <span class="instruction-icon">🏆</span>
+                <div>
+                    <h3>4. Eğlen ve Öğren</h3>
+                    <p>Oynarken öğren, öğrenirken eğlen!</p>
+                </div>
+            </div>
+            <button class="back-btn" onclick="showMainMenu()">🔙 Ana Menü</button>
+        </div>
+    </div>
+
+    <!-- Ses Efektleri -->
+    <audio id="successSound" src="data:audio/wav;base64,UklGRhYAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQL/AP8A/wD/"></audio>
+    <audio id="clickSound" src="data:audio/wav;base64,UklGRhYAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQL/AP8A/wD/"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
