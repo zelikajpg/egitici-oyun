@@ -1,0 +1,21 @@
+[build]
+  # Build komutu yok - static site
+  command = "echo 'No build required'"
+  publish = "."
+  
+  # Functions klasörü
+  functions = "netlify/functions"
+
+# Redirect kuralları
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"

@@ -1,0 +1,29 @@
+{
+  "name": "egitici-oyun",
+  "version": "1.0.0",
+  "description": "5-6 yaş grubu için AI destekli eğitici oyun platformu",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "deploy": "netlify deploy --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KULLANICI_ADI/egitici-oyun.git"
+  },
+  "keywords": [
+    "education",
+    "game",
+    "children",
+    "ai",
+    "google-gemini",
+    "interactive",
+    "learning"
+  ],
+  "author": "Zeliha",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}
